@@ -9,9 +9,16 @@ services:
       - "${OPENWEBUI_PORT}:8080"
 
     environment:
-      - TZ=${TZ}
-      - WEBUI_AUTH=True
-      - ENABLE_SIGNUP=False
+      TZ: ${TZ}
+      WEBUI_AUTH: "true"
+      ENABLE_SIGNUP: "false"
 
     volumes:
       - ./data/open-webui:/app/backend/data
+
+    networks:
+      - proxy-tier
+
+networks:
+  proxy-tier:
+    external: true
